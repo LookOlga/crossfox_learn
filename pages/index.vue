@@ -2,7 +2,7 @@
   <div class="d-flex align-center main-screen">
       <div class="main-screen__text">
         <h2 class="main-screen__title">Проверь свои знания по Javascript</h2>
-        <p class="main-screen__desc mt-5">Пройдите тест на тему JavaScript и выявите пробелы в занниях. После окончания теста вы сможете просмотреть результаты, ознакомиться с верными и неверными ответами и узнать какие темы стоит подтянуть.</p>
+        <p class="main-screen__desc mt-5">Пройдите тест на тему JavaScript и выявите пробелы в знаниях. После окончания теста вы сможете просмотреть результаты, ознакомиться с верными и неверными ответами и узнать какие темы стоит подтянуть.</p>
         <nuxt-link to="/js-test" class="mt-5 btn btn--primary">Начать тест</nuxt-link>
       </div>
      <div class="main-screen__img">
@@ -19,6 +19,10 @@ export default {
 
 
 <style lang="scss">
+  html {
+    font-size: 10px;
+  }
+
   .main-screen {
     height: 100%;
     &__title {
