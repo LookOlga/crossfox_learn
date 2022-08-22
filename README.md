@@ -18,6 +18,6 @@ All popular JavaScript questions and answers for interview preparation.
 
 Links to free books.
 
-And other things which are planned to be add to platform: HTML, CSS, React and Vue interview questions and answers for them.
+And other things that are planned to be added to the platform: HTML, CSS, React and Vue interview questions and answers.
 
 
