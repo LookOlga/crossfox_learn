@@ -1,0 +1,31 @@
+<template>
+  <symbol
+    id="bookmark-icon"
+    viewBox="0 0 34 42"
+  >
+    <path
+      d="M3 41C1.89543 41 1 40.1046 1 39V3C1 1.89543 1.89543 1 3 1H31C32.1046 1 33 1.89543 33 3V39C33 40.1046 32.1046 41 31 41H3Z"
+      fill="#2F88FF"
+      stroke="black"
+      stroke-width="2"
+      stroke-linejoin="round"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M14 19V1H26V19L20 12.7273L14 19Z"
+      fill="#F44336"
+      stroke="black"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M3 1H31"
+      stroke="black"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </symbol>
+</template>
