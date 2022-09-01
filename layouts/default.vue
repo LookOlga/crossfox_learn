@@ -150,7 +150,7 @@ export default {
 
   body {
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 1.5;
     font-weight: 300;
   }
@@ -179,12 +179,13 @@ export default {
     height: 2.4rem;
   }
   
-  .menu-title {
-    font-size: 1.6rem;
+  .v-list-item__title.menu-title {
+    font-size: 2rem;
     font-weight: 400;
   }
 
   .container {
+    padding: 0 30px;
     height: 100%;
     @media (min-width: 1904px) {
       max-width: 1400px;
@@ -203,6 +204,10 @@ export default {
 
 .page {
   padding: 5rem 0 10rem;
+
+  &__title {
+    font-size: 3rem;
+  }
 
   &__block {
     margin-bottom: 7rem;
@@ -228,8 +233,9 @@ export default {
   }
 
   &__item-link {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 500;
+    line-height: 2;
     color: #fff !important;
     padding-bottom: 5px;
     border-bottom: 1px dashed #fff;

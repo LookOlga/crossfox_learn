@@ -6,6 +6,16 @@
 $font-size-root: 16px;
 $body-font-family: 'Montserrat', sans-serif;
 
+html {
+    font-size: 10px;
+    @media(max-width: 768px) {
+        font-size: 1vw;
+    }
+    @media(max-width: 480px) {
+        font-size: 2vw;
+    }
+}
+
 
 .v-application {
     font-family: $body-font-family, sans-serif !important;

@@ -1,6 +1,6 @@
 <template>
   <div class="page questions-page">
-    <h2 class="page questions-page page__title text-h2 font-weight-bold mb-8">
+    <h2 class="page__title mb-8">
       Вопросы и ответы к собеседованию по JavaScript
     </h2>
     <v-expansion-panels>
@@ -231,8 +231,8 @@ export default {
 
 <style lang="scss">
 .questions-page {
-  &__quest-title {
-    font-size: 1.8rem;
+  &__quest-title.v-expansion-panel-header {
+    font-size: 2rem;
     font-weight: 500;
     line-height: 1.6;
   }

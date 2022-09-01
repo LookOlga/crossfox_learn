@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="test-page page">
-      <h2 class="test-page__title page__title text-h2 font-weight-bold mb-8">
+      <h2 class="test-page__title page__title mb-8">
         Тест на знание JavaScript
       </h2>
       <div class="test-page__content" v-if="!showResults">
