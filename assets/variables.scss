@@ -16,6 +16,14 @@ html {
     }
 }
 
+.container {
+    padding: 0 30px;
+    height: 100%;
+    @media (min-width: 1904px) {
+      max-width: 1400px;
+    }
+  }
+
 
 .v-application {
     font-family: $body-font-family, sans-serif !important;
