@@ -4,7 +4,7 @@
             <button class="explanation__close" @click="closeExplanation">
                 <v-icon size="26">mdi-window-close</v-icon>
             </button>
-            <div class="explanation__text" v-html="text"></div>
+            <div class="explanation__text explanation-text" v-html="text"></div>
             <div class="explanation__info" v-if="topics">
                 <h3 class="explanation__subtitle">Полезные ссылки</h3>
                 <ul>
@@ -85,6 +85,23 @@
             text-decoration: underline;
             transition: color 0.2s;
         }
+    }
+
+    .explanation-text {
+            margin-top: 5rem;
+            p span {
+                font-family: 'Roboto Mono' monospace;
+                font-weight: 500;
+                color: #a76cfa;
+                margin: 0 3px;
+            }
+        }
+
+    .explanation-is-visible {
+        opacity: 1;
+        transform: scale(1);
+        border-bottom-left-radius: 0;
+        pointer-events: auto;
     }
 
 </style>

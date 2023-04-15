@@ -42,7 +42,15 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/axios'
   ],
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'http://188.225.74.22:5888',
+      proxy: false,
+      credentials: false
+    }
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -53,7 +61,7 @@ export default {
     },
     {
       src: '~/plugins/iconLoader.js'
-    },
+    }
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

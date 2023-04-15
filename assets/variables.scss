@@ -6,18 +6,8 @@
 $font-size-root: 16px;
 $body-font-family: 'Montserrat', sans-serif;
 
-html {
-    font-size: 10px;
-    @media(max-width: 768px) {
-        font-size: 1vw;
-    }
-    @media(max-width: 480px) {
-        font-size: 2vw;
-    }
-}
-
 .container {
-    padding: 0 30px;
+    padding: 0 16px;
     height: 100%;
     @media (min-width: 1904px) {
       max-width: 1400px;
@@ -32,6 +22,9 @@ html {
         font-family: $body-font-family, sans-serif !important;
      }
   }
+
+
+/* buttons ===== START ===== */
 
 
 .btn {
@@ -53,4 +46,47 @@ html {
 .btn--disabled {
     background: rgba(#fff, 0.3);
     color: #ccc;
+}
+
+.lightbox-is-opened {
+    opacity: 1;
+    transform: scale(1);
+    border-bottom-left-radius: 0;
+    pointer-events: auto;
+}
+
+.arrow-left, .arrow-right {
+    svg {
+        width: 3rem;
+        height: 4.5rem;
+        color: #fff;
+    }
+}
+
+.btn-close {
+    svg {
+        width: 2.4rem;
+        height: 2.4rem;
+        color: #fff;
+    }
+}
+
+/* buttons ===== END ===== */
+
+
+.zoom-icon {
+    width: 4rem;
+    height: 4rem;
+}
+
+.instagram-icon, .zoom-icon {
+    color: #fff;
+}
+
+.icon {
+    @media(any-hover: hover) {
+        &:hover {
+            color: #6200ea;
+        }
+    }
 }

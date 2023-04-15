@@ -1,11 +1,14 @@
 <template>
   <div>
-    <div class="test-page page">
-      <h2 class="test-page__title page__title mb-8">
+    <div v-if="isLoading">Loading...</div>
+
+    <div class="test-page page" v-else>
+      <h2 class="test-page__title page__title mb-5">
         Тест на знание JavaScript
       </h2>
-      <div class="test-page__content" v-if="!showResults">
-        <div class="test-page__count d-flex align-center mb-8">
+
+      <div class="test-page__content">
+        <div class="test-page__count d-flex align-center mb-3">
           <h3 class="test-page__subtitle mr-3">Вопросы:</h3>
           <div class="test-page__num">
             <span>{{ index + 1 }}</span>
@@ -57,26 +60,23 @@
         </v-card>
         <button
           class="mt-5 pa-2 btn quest__btn quest__btn--answer"
+          type="button"
           :disabled="disabled"
           :class="disabled ? 'disabled' : 'active'"
-          @click="checkAnswer"
+          @click.prevent="confirmAnswer(currentQuest.id)"
         >
           Ответить
         </button>
         <button
           class="mt-5 pa-2 btn quest__btn quest__btn--next"
+          type="button"
           @click="nextQuestion"
           :disabled="disabledNext"
           :class="disabledNext ? 'disabled' : 'active'"
         >
-          {{ isLastQuest ? "Закончить тест" : "Следующий вопрос" }}
+          {{ isLastQuest ? "Посмотреть результаты" : "Следующий вопрос" }}
         </button>
       </div>
-      <TestResults
-        v-if="showResults"
-        :score="score"
-        :questionsCount="questions.length"
-      />
     </div>
     <Explanation
       :text="currentQuestExplanation"
@@ -85,7 +85,7 @@
       :class="{ 'explanation-is-visible': explanationIsVisible }"
     />
 
-    <!-- <v-card class="quest pa-4" v-for="(q, i) in questions" :key="i">
+    <!-- <v-card class="quest pa-4" v-for="(q, i) in items" :key="i">
       <h3 class="quest__title mb-3">{{ q.question }}</h3>
       <highlightjs
         class="quest__code mb-3"
@@ -104,11 +104,13 @@
 <script>
 import SvgIcons from "~/components/Icons/SvgIcons";
 import Icon from "~/components/Icons/Icon";
-import testQuestions from "../testQuestions.json";
 import TestResults from "~/components/js-test/testResults.vue";
 import Explanation from "~/components/js-test/Explanation.vue";
+import { mapState } from "vuex";
+import tests from "../tests.json";
+
 export default {
-  name: "DefaultLayout",
+  name: "JsTest",
   components: {
     SvgIcons,
     Icon,
@@ -117,7 +119,6 @@ export default {
   },
   data() {
     return {
-      questions: testQuestions.items,
       index: 0,
       ansIndex: null,
       rightAnswerIndex: null,
@@ -128,8 +129,41 @@ export default {
       blockAnswers: false,
       isWrong: false,
       explanationIsVisible: false,
-      showResults: false,
+      items: tests,
     };
+  },
+  computed: {
+    ...mapState("test", {
+      questions: (state) => state.questions,
+      isLoading: (state) => state.isLoading,
+      rightAnswer: (state) => state.rightAnswer,
+    }),
+    currentQuest() {
+      return this.questions[this.index];
+    },
+    currentQuestExplanation() {
+      if (this.currentQuest && this.currentQuest.explanation) {
+        return this.currentQuest.explanation;
+      }
+    },
+    currentQuestTopics() {
+      if (this.currentQuest && this.currentQuest.topics) {
+        return this.currentQuest.topics;
+      }
+    },
+    shuffledAnswers() {
+      const answers = [...this.currentQuest.answersList];
+      return answers.sort(() => Math.random() - 0.5);
+    },
+    // rightAnswer() {
+    //   return this.questions[this.index].rightAnswer;
+    // },
+    isLastQuest() {
+      return this.index === this.questions.length - 1;
+    },
+  },
+  created() {
+    this.$store.dispatch("test/startNewTest");
   },
   methods: {
     onChooseAnswer(ind) {
@@ -140,50 +174,47 @@ export default {
       }
     },
     nextQuestion() {
-      if (!this.isLastQuest) {
-        this.index++;
-        this.disabled = true;
-        this.disabledNext = true;
-        this.userAnswer = "";
-        this.ansIndex = null;
-        this.rightAnswerIndex = null;
-        this.wrongAnswerIndex = null;
-        this.isWrong = false;
-        setTimeout(() => {
-          this.blockAnswers = false;
-        }, 100);
-      } else {
-        this.showResults = true;
+      if (this.isLastQuest) {
+        this.$router.push("/results");
       }
+      this.index++;
+      this.disabled = true;
+      this.disabledNext = true;
+      this.userAnswer = "";
+      this.ansIndex = null;
+      this.rightAnswerIndex = null;
+      this.wrongAnswerIndex = null;
+      this.isWrong = false;
+      setTimeout(() => {
+        this.blockAnswers = false;
+      }, 100);
+    },
+    confirmAnswer(id) {
+      this.$store.dispatch("test/sendAnswer", id);
+      this.disabled = true;
+      this.checkAnswer();
     },
     checkAnswer() {
       this.blockAnswers = true;
       setTimeout(() => {
         if (this.userAnswer === this.rightAnswer) {
-          this.rightAnswerIndex = this.currentQuest.answersList.indexOf(
-            this.userAnswer
-          );
+          this.rightAnswerIndex = this.shuffledAnswers.indexOf(this.userAnswer);
           this.disabledNext = false;
         } else {
-          this.wrongAnswerIndex = this.currentQuest.answersList.indexOf(
-            this.userAnswer
-          );
+          this.wrongAnswerIndex = this.shuffledAnswers.indexOf(this.userAnswer);
           this.ansIndex = null;
           setTimeout(() => {
-            this.rightAnswerIndex = this.currentQuest.answersList.indexOf(
+            this.rightAnswerIndex = this.shuffledAnswers.indexOf(
               this.rightAnswer
             );
             this.isWrong = true;
-            this.$store.commit("addWrongAnswer", {
-              topic: this.currentQuest.topic,
-              links: this.currentQuest.links,
-            });
+            this.$store.commit("results/addWrongAnswer", this.currentQuest);
             setTimeout(() => {
               this.disabledNext = false;
-            }, 900);
-          }, 1100);
+            }, 1000);
+          }, 1300);
         }
-      }, 500);
+      }, 800);
     },
     openExplanation() {
       this.explanationIsVisible = true;
@@ -191,31 +222,19 @@ export default {
     closeExplanation() {
       this.explanationIsVisible = false;
     },
-  },
-  computed: {
-    currentQuest() {
-      return this.questions[this.index];
-    },
-    currentQuestExplanation() {
-      if (!this.isLast) {
-        return this.currentQuest.explanation;
-      }
-    },
-    currentQuestTopics() {
-      return this.currentQuest.topics;
-    },
-    shuffledAnswers() {
-      return this.currentQuest.answersList.sort(() => Math.random() - 0.5);
-    },
-    rightAnswer() {
-      return this.questions[this.index].rightAnswer;
-    },
-    isLastQuest() {
-      return this.index === this.questions.length - 1;
-    },
-    score() {
-      return this.$store.getters.score;
-    },
+    // async getQuestions() {
+    //  try {
+    //   this.isLoading = true;
+    //   const data = await this.$axios.$get('/test/new');
+
+    //   this.questions = data;
+
+    //   console.log(this.questions)
+    //   this.isLoading = false;
+    //  } catch (error) {
+    //    console.log(error)
+    //  }
+    // }
   },
 };
 </script>
@@ -257,24 +276,29 @@ export default {
     top: -75px;
     right: 0;
     transition: all 0.33s ease-in-out;
-    &::after {
-      content: attr(data-desc);
-      position: absolute;
-      top: 0;
-      right: -100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-width: 110px;
-      background-color: #fafafa;
-      color: #333;
-      text-transform: lowercase;
-      font-size: 12px;
-      padding: 5px;
-      border-radius: 10px;
-      white-space: break-spaces;
-      letter-spacing: 1px;
-      transform: translate(25%, -25%);
+    @media (max-width: 769px) {
+      right: -30px;
+    }
+    @media (min-width: 1024px) {
+      &::after {
+        content: attr(data-desc);
+        position: absolute;
+        top: 0;
+        right: -100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 110px;
+        background-color: #fafafa;
+        color: #333;
+        text-transform: lowercase;
+        font-size: 12px;
+        padding: 5px;
+        border-radius: 10px;
+        white-space: break-spaces;
+        letter-spacing: 1px;
+        transform: translate(25%, -25%);
+      }
     }
   }
 
@@ -345,13 +369,6 @@ export default {
 
 .quest__ans.is-blocked {
   pointer-events: none;
-}
-
-.explanation-is-visible {
-  opacity: 1;
-  transform: scale(1);
-  border-bottom-left-radius: 0;
-  pointer-events: auto;
 }
 
 @keyframes spread {
