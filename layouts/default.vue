@@ -1,50 +1,26 @@
 <template>
-  <v-app :class="{'paddingLeft': isDesktop}">
+  <v-app :class="{ 'paddingLeft': isDesktop }">
     <v-card>
       <v-layout>
-        <v-navigation-drawer
-          v-model="drawer"
-          :mini-variant.sync="mini"
-          fixed
-          :temporary="temporary"
-          :hide-overlay="overlay"
-          color="#000"
-          style="min-height: 100vh"
-        >
+        <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" fixed :temporary="temporary"
+          :hide-overlay="overlay" color="#000" style="min-height: 100vh">
           <v-list>
-            <v-list-item
-              class="d-flex justify-space-between align-center pl-2 pr-2"
-            >
-              <v-list-item-action >
-                <v-app-bar-nav-icon color="white"  v-if="isDesktop"/>
+            <v-list-item class="d-flex justify-space-between align-center pl-2 pr-2">
+              <v-list-item-action>
+                <v-app-bar-nav-icon color="white" v-if="isDesktop" />
               </v-list-item-action>
               <v-list-item-content class="justify-end">
                 <v-btn icon max-width="30" min-width="30" height="30" v-if="isDesktop">
-                  <v-icon @click.stop="mini = !mini" size="30"
-                    >mdi-chevron-left</v-icon
-                  >
+                  <v-icon @click.stop="mini = !mini" size="30">mdi-chevron-left</v-icon>
                 </v-btn>
                 <v-btn icon max-width="30" min-width="30" height="30" v-if="!isDesktop">
-                  <v-icon @click.stop="drawer = false" size="30"
-                    >mdi-chevron-left</v-icon
-                  >
+                  <v-icon @click.stop="drawer = false" size="30">mdi-chevron-left</v-icon>
                 </v-btn>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item
-              v-for="(item, i) in items"
-              :key="i"
-              link
-              :to="item.to"
-              router
-              exact
-              color="deep-purple lighten-5"
-              class="pl-2 pr-2"
-            >
-              <v-list-item-action
-                style="min-width: 36px"
-                class="justify-center"
-              >
+            <v-list-item v-for="(item, i) in items" :key="i" link :to="item.to" router exact color="deep-purple lighten-5"
+              class="pl-2 pr-2">
+              <v-list-item-action style="min-width: 36px" class="justify-center">
                 <Icon :id="item.id" class="menu-icon" />
               </v-list-item-action>
               <v-list-item-content>
@@ -55,15 +31,9 @@
         </v-navigation-drawer>
       </v-layout>
     </v-card>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      flat
-      color="#121212"
-      :class="{'paddingLeft': isDesktop}"
-    >
+    <v-app-bar :clipped-left="clipped" fixed flat color="#121212" :class="{ 'paddingLeft': isDesktop }">
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="white" /> -->
-      <v-app-bar-nav-icon color="white" v-if="!isDesktop" @click.stop="drawer = true"/>
+      <v-app-bar-nav-icon color="white" v-if="!isDesktop" @click.stop="drawer = true" />
       <!-- <v-btn
         icon
         @click.stop="rail = !rail"
@@ -75,12 +45,7 @@
       </nuxt-link>
       <v-spacer />
       <a href="https://instagram.com/crossfox_learn" class="instagram-link">
-        <Icon
-          id="instagram-icon"
-          class="instagram-icon icon"
-          width="20"
-          height="20"
-        />
+        <Icon id="instagram-icon" class="instagram-icon icon" width="20" height="20" />
       </a>
       <!-- <v-btn
         icon
@@ -107,18 +72,10 @@
       <v-container>
         <Nuxt />
         <div class="donat">
-          <a
-            href="https://yoomoney.ru/to/4100117344808631"
-            class="donat__link"
-            target="_blank"
-          >
-            <img
-              src="../static/home_page/donat.jpg"
-              alt="donat"
-              class="donat__img"
-            />
+          <NuxtLink to="/donation" class="donat__link">
+            <img src="../static/home_page/donat.jpg" alt="donat" class="donat__img" />
             <div class="donat__label">Поддержи проект!</div>
-          </a>
+          </NuxtLink>
         </div>
       </v-container>
     </v-main>
@@ -140,21 +97,10 @@
       </v-list>
     </v-navigation-drawer> -->
 
-    <v-footer
-      class="d-flex justify-space-between"
-      flat
-      color="#121212"
-      :clipped-left="clipped"
-    >
-      <div>
+    <v-footer class="d-flex justify-space-between" flat color="#121212" :clipped-left="clipped">
         <span>&copy; {{ new Date().getFullYear() }}</span>
-        <a
-          href="https://www.freepik.com/free-vector/doughnut-planet-flat-cartoon-style_12312308.htm#query=donut&position=13&from_view=keyword"
-          class="license-link"
-          target="_blank"
-          >Image by catalyststuff</a
-        >
-      </div>
+        <a href="https://www.freepik.com/free-vector/doughnut-planet-flat-cartoon-style_12312308.htm#query=donut&position=13&from_view=keyword"
+          class="license-link" target="_blank">Image by catalyststuff</a>
     </v-footer>
     <SvgIcons />
   </v-app>
@@ -201,14 +147,14 @@ export default {
   },
   computed: {
     temporary() {
-      if(!this.isDesktop) this.drawer = false;
+      if (!this.isDesktop) this.drawer = false;
       return !this.isDesktop;
     }
   },
   watch: {
-   isDesktop(val) {
+    isDesktop(val) {
       console.log(val)
-      if(val) {
+      if (val) {
         this.mini = true;
       } else {
         this.mini = false;
@@ -217,7 +163,7 @@ export default {
   },
   mounted() {
     window.addEventListener('resize', () => {
-      if( window.innerWidth > 600) {
+      if (window.innerWidth > 600) {
         this.isDesktop = true;
       } else {
         this.isDesktop = false;
@@ -230,9 +176,11 @@ export default {
 <style lang="scss">
 html {
   font-size: 10px;
+
   @media (max-width: 768px) {
     font-size: 1vw;
   }
+
   @media (max-width: 480px) {
     font-size: 2vw;
   }
@@ -253,6 +201,12 @@ img {
 
 a {
   text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0 !important;
 }
 
 .logo {
@@ -335,13 +289,16 @@ a {
 .donat {
   width: 10rem;
   height: 10rem;
+
   @media (min-width: 1024px) {
     position: fixed;
     right: 0;
     bottom: 10rem;
     z-index: 10;
+
     &__link {
       display: block;
+
       &:hover {
         .donat__img {
           box-shadow: rgba(240, 46, 170, 0.4) -5px 5px,
@@ -353,10 +310,12 @@ a {
       }
     }
   }
+
   &__img {
     border-radius: 5px;
     transition: box-shadow 0.2s;
   }
+
   &__label {
     font-size: 1.6rem;
     font-weight: 700;

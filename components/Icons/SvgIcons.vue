@@ -6,9 +6,11 @@
       <BookIcon />
       <ArrowLeftIcon />
       <ArrowRightIcon />
-      <CloseIcon/>
+      <CloseIcon />
       <MagnifierIcon />
       <InstagramIcon />
+      <DonutIcon />
+      <YoomoneyIcon />
     </svg>
   </div>
 </template>
@@ -16,12 +18,14 @@
 <script>
 import JavaScriptIcon from './langIcons/JavaScriptIcon';
 import BookmarkIcon from './other/BookmarkIcon';
-import BookIcon from './other/BookIcon.vue';
-import ArrowLeftIcon from './buttons/ArrowLeftIcon.vue';
-import ArrowRightIcon from './buttons/ArrowRightIcon.vue';
-import CloseIcon from './buttons/CloseIcon.vue';
-import MagnifierIcon from './buttons/MagnifierIcon.vue';
-import InstagramIcon from './soc/InstagramIcon.vue';
+import BookIcon from './other/BookIcon';
+import ArrowLeftIcon from './buttons/ArrowLeftIcon';
+import ArrowRightIcon from './buttons/ArrowRightIcon';
+import CloseIcon from './buttons/CloseIcon';
+import MagnifierIcon from './buttons/MagnifierIcon';
+import InstagramIcon from './soc/InstagramIcon';
+import DonutIcon from './other/DonutIcon';
+import YoomoneyIcon from './donation/YoomoneyIcon';
 export default {
   components: {
     JavaScriptIcon,
@@ -31,8 +35,10 @@ export default {
     ArrowRightIcon,
     CloseIcon,
     MagnifierIcon,
-    InstagramIcon
-}
+    InstagramIcon,
+    DonutIcon,
+    YoomoneyIcon
+  }
 }
 
 </script>
