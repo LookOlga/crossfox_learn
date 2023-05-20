@@ -12,7 +12,7 @@
       >
     </div>
     <div class="main-screen__img">
-      <img src="../static/home_page/full_illustr.png" />
+      <img src="../static/home_page/full_illustr.png" alt="crossfox" width="470" height="470"/>
     </div>
   </div>
 </template>
