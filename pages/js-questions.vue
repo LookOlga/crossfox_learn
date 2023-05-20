@@ -1,6 +1,6 @@
 <template>
   <div class="page questions-page">
-    <h2 class="page__title mb-8">
+    <h2 class="page__title">
       Вопросы и ответы к собеседованию по JavaScript
     </h2>
     <v-expansion-panels>

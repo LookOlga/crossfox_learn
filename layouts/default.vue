@@ -148,7 +148,7 @@ html {
   }
 
   @media (max-width: 480px) {
-    font-size: 2vw;
+    font-size: 2.5vw;
   }
 }
 
@@ -402,6 +402,11 @@ ul {
     }
 }
 
+.btn-test {
+  @media(max-width: 480px) {
+    height: 4.5rem;
+  }
+}
 /* buttons ===== END ===== */
 
 

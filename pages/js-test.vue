@@ -3,7 +3,7 @@
     <div v-if="isLoading">Loading...</div>
 
     <div class="test-page page" v-else>
-      <h2 class="test-page__title page__title mb-5">
+      <h2 class="test-page__title page__title">
         Тест на знание JavaScript
       </h2>
 
@@ -26,7 +26,7 @@
           />
           <div class="quest__answers">
             <div
-              class="quest__ans pa-3"
+              class="quest__ans pa-3 btn-test"
               v-for="(ans, ind) in shuffledAnswers"
               :key="ind"
               :class="{
@@ -61,7 +61,7 @@
           </div>
         </v-card>
         <button
-          class="mt-5 pa-2 btn quest__btn quest__btn--answer"
+          class="mt-5 pa-2 btn quest__btn quest__btn--answer btn-test"
           type="button"
           :disabled="disabled"
           :class="disabled ? 'disabled' : 'active'"
@@ -70,7 +70,7 @@
           Ответить
         </button>
         <button
-          class="mt-5 pa-2 btn quest__btn quest__btn--next"
+          class="mt-5 pa-2 btn quest__btn quest__btn--next btn-test"
           type="button"
           @click="nextQuestion"
           :disabled="disabledNext"
@@ -333,6 +333,10 @@ export default {
         letter-spacing: 1px;
         transform: translate(25%, -25%);
       }
+    }
+
+    @media(max-width: 480px) {
+      top: -6rem;
     }
   }
 
