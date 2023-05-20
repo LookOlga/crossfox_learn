@@ -307,12 +307,9 @@ export default {
 
   &__exp-btn {
     position: absolute;
-    top: 0;
+    top: -5rem;
     right: 0;
     transition: transform 0.33s ease-in-out;
-    // @media (max-width: 769px) {
-    //   right: -30px;
-    // }
     @media (min-width: 1024px) {
       &::after {
         content: attr(data-desc);
