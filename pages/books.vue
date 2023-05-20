@@ -3,8 +3,8 @@
         <div class="page__section-heading">
                 <Icon 
                   id="book-icon"
-                  width="6"
-                  height="6"
+                  width="5"
+                  height="5"
                   class="page__heading-icon"/>
                  <h2 class="page__title text-h2 font-weight-bold">Книги</h2>
             </div>

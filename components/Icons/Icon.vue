@@ -1,7 +1,7 @@
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    :style="'width:' + width + 'rem;' + 'height:' + height + 'rem;'"
+    :style="'min-width:' + width + 'rem;' + 'width:' + width + 'rem;' + 'height:' + height + 'rem;'"
     :aria-labelledby="id"
     :fill="color"
   >

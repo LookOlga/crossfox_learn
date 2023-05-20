@@ -2,7 +2,7 @@
     <div class="donation-page page">
         <section>
             <div class="page__section-heading">
-                <Icon id="donut-icon" width="6" height="6" class="page__heading-icon" />
+                <Icon id="donut-icon" width="5" height="5" class="page__heading-icon" />
                 <h2 class="page__title text-h2 font-weight-bold">Поддержите наш проект!</h2>
             </div>
             <p class="donation-page__desc">
