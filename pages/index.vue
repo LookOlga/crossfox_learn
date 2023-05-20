@@ -37,7 +37,7 @@ export default {
   }
 
   &__title {
-    font-size: 4.4rem;
+    font-size: 4rem;
     max-width: 55rem;
     line-height: 1.2;
   }
