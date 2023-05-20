@@ -10,8 +10,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - crossfox_platform',
-    title: 'crossfox_platform',
+    titleTemplate: '%s - crossfox_learn',
+    title: 'crossfox_learn',
     htmlAttrs: {
       lang: 'en'
     },
@@ -66,7 +66,7 @@ export default {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/styles.scss'],
     theme: {
       dark: true,
       themes: {
@@ -78,6 +78,21 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3
+        }
+      }
+    }
+  },
+  extractCSS: {
+    ignoreOrder: true
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.(scss|css|vue)$/,
+          chunks: 'all',
+          enforce: true
         }
       }
     }

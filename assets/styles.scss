@@ -1,0 +1,12 @@
+$font-size-root: 10px;
+$body-font-family: 'Montserrat', sans-serif;
+
+
+@media (max-width: 768px) {
+    $font-size-root: 1.3vw;
+  }
+
+  @media (max-width: 480px) {
+    $font-size-root: 2vw;
+  }
+

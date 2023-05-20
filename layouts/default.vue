@@ -39,18 +39,18 @@
       </nuxt-link>
       <v-spacer />
       <a href="https://instagram.com/crossfox_learn" class="instagram-link">
-        <Icon id="instagram-icon" class="instagram-icon icon" width="20" height="20" />
+        <Icon id="instagram-icon" class="instagram-icon icon" width="2" height="2" />
       </a>
     </v-app-bar>
     <v-main>
-      <v-container fluid>
+      <v-container>
         <Nuxt />
-        <div class="donat isDesktop">
+        <!-- <div class="donat isDesktop">
           <NuxtLink to="/donation" class="donat__link">
             <img src="../static/home_page/donat.jpg" alt="donat" class="donat__img" />
             <div class="donat__label">Поддержи проект!</div>
           </NuxtLink>
-        </div>
+        </div> -->
       </v-container>
     </v-main>
 
@@ -142,8 +142,8 @@ export default {
 html {
   font-size: 10px;
   -webkit-tap-highlight-color: transparent;
-
-  @media (max-width: 768px) {
+  
+@media (max-width: 768px) {
     font-size: 1.3vw;
   }
 
@@ -203,8 +203,8 @@ ul {
 }
 
 .menu-icon {
-  width: 24px;
-  height: 24px;
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 .v-list-item__title.menu-title {
@@ -213,8 +213,8 @@ ul {
 }
 
 .container {
-  padding: 0 20px !important;
-  max-width: 1240px !important;
+  padding: 0 2rem !important;
+  max-width: 120rem !important;
 
   @media (min-width: 1904px) {
     max-width: 1300px;
@@ -334,5 +334,91 @@ ul {
     z-index: 5;
   }
  }
+}
+
+
+.container {
+    padding: 0 16px;
+    height: 100%;
+    @media (min-width: 1904px) {
+      max-width: 1400px;
+    }
+  }
+
+
+.v-application {
+    font-family: $body-font-family, sans-serif !important;
+    line-height: 1.6;
+    .text-h2, .text-h3, .text-h4, .text-h5, .text-h6 { 
+        font-family: $body-font-family, sans-serif !important;
+     }
+  }
+
+
+/* buttons ===== START ===== */
+
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    padding: 12px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+   
+}
+
+.btn--primary {
+    background-color: #6200ea;
+    color: #fff !important;
+}
+
+.btn--disabled {
+    background: rgba(#fff, 0.3);
+    color: #ccc;
+}
+
+.lightbox-is-opened {
+    opacity: 1;
+    transform: scale(1);
+    border-bottom-left-radius: 0;
+    pointer-events: auto;
+}
+
+.arrow-left, .arrow-right {
+    svg {
+        width: 3rem;
+        height: 4.5rem;
+        color: #fff;
+    }
+}
+
+.btn-close {
+    svg {
+        width: 2.4rem;
+        height: 2.4rem;
+        color: #fff;
+    }
+}
+
+/* buttons ===== END ===== */
+
+
+.zoom-icon {
+    width: 4rem;
+    height: 4rem;
+}
+
+.instagram-icon, .zoom-icon {
+    color: #fff;
+}
+
+.icon {
+    @media(any-hover: hover) {
+        &:hover {
+            color: #6200ea;
+        }
+    }
 }
 </style>

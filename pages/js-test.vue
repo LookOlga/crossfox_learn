@@ -43,6 +43,7 @@
                 v-model="userAnswer"
                 :value="ans"
                 @change="onChooseAnswer(ind)"
+                @focus="onFocusAnswer(ans, ind)"
               />
             </div>
             <v-btn
@@ -54,7 +55,8 @@
               data-desc="Прочитай объяснение"
               v-if="isWrong"
               @click="openExplanation"
-              ><v-icon> mdi-chat-alert-outline</v-icon>
+            >
+              <v-icon> mdi-chat-alert-outline</v-icon>
             </v-btn>
           </div>
         </v-card>
@@ -73,6 +75,7 @@
           @click="nextQuestion"
           :disabled="disabledNext"
           :class="disabledNext ? 'disabled' : 'active'"
+          @keyup.right="nextQuestion"
         >
           {{ isLastQuest ? "Посмотреть результаты" : "Следующий вопрос" }}
         </button>
@@ -165,13 +168,44 @@ export default {
   created() {
     this.$store.dispatch("test/startNewTest");
   },
+  mounted() {
+    window.addEventListener("keydown", (e) => {
+      const keyName = e.key;
+      console.log(keyName);
+      this.onHandleKeyboard(keyName);
+    });
+  },
+  // destroyed() {
+  //   window.removeEventListener('keydown', this.onHandleKeyboard);
+  // },
   methods: {
-    onChooseAnswer(ind) {
-      this.ansIndex = ind;
-
-      if (this.userAnswer) {
-        this.disabled = false;
+    onHandleKeyboard(key) {
+      if (!this.disabled) {
+        if (key === "Enter") {
+          this.confirmAnswer(this.currentQuest.id);
+        }
       }
+
+      if(!this.disabledNext && key === "ArrowRight") {
+          this.nextQuestion();
+      } 
+    
+      // if (key === "Tab") {
+      //   let index = 0;
+      //   this.onChooseAnswer(index);
+      // }
+    },
+    onFocusAnswer(answer, index) {
+      this.userAnswer = answer;
+      this.onChooseAnswer(index);
+      console.log(this.userAnswer);
+    },
+    onChooseAnswer(ind) {
+        this.ansIndex = ind;
+
+        if (this.userAnswer) {
+          this.disabled = false;
+        }
     },
     nextQuestion() {
       if (this.isLastQuest) {
@@ -267,18 +301,18 @@ export default {
     font-weight: 500;
   }
 
-  &__answers {
+  &__code {
     position: relative;
   }
 
   &__exp-btn {
     position: absolute;
-    top: -75px;
+    top: 0;
     right: 0;
-    transition: all 0.33s ease-in-out;
-    @media (max-width: 769px) {
-      right: -30px;
-    }
+    transition: transform 0.33s ease-in-out;
+    // @media (max-width: 769px) {
+    //   right: -30px;
+    // }
     @media (min-width: 1024px) {
       &::after {
         content: attr(data-desc);
