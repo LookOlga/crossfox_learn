@@ -42,7 +42,7 @@
         <Icon id="instagram-icon" class="instagram-icon icon" width="2" height="2" />
       </a>
     </v-app-bar>
-    <v-main>
+    <v-main class="pt-5">
       <v-container>
         <Nuxt />
         <!-- <div class="donat isDesktop">
