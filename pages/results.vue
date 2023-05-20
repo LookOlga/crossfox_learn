@@ -17,7 +17,7 @@ import TestResults from "~/components/js-test/TestResults.vue";
 import TestMistake from "~/components/js-test/TestMistake.vue";
 
 export default {
-    name: "Results",
+    name: "ResultPage",
     components: {TestResults, TestMistake},
     computed: {
         ...mapGetters("results", [

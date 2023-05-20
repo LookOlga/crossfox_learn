@@ -19,6 +19,7 @@
 
 <script>
     export default {
+        name: 'TestExplanation',
         props: ['text', 'topics'],
         methods: {
             closeExplanation() {

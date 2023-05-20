@@ -14,7 +14,7 @@
 
 <script>
     export default {
-        name: 'test-results',
+        name: 'TestRsesults',
         props: ['quantityOfWrong', 'questionsCount'], 
         computed: {
             resultComment() {

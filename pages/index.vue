@@ -49,9 +49,8 @@ export default {
   }
 
   &__img {
-    img {
-      animation: 600ms scaleIn 100ms both;
-    }
+    transition: 0.33s ease;
+    animation: 600ms scaleIn 150ms both;
     @media (min-width: 992px) {
       width: calc(45% - 5rem);
       margin-left: 5rem;
@@ -70,8 +69,10 @@ export default {
 
 @keyframes scaleIn {
   from {
+    opacity: 0;
     transform: scale(0);
   } to {
+    opacity: 1;
     transform: scale(1);
   }
 }

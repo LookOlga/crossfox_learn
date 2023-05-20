@@ -104,7 +104,7 @@
 <script>
 import SvgIcons from "~/components/Icons/SvgIcons";
 import Icon from "~/components/Icons/Icon";
-import TestResults from "~/components/js-test/testResults.vue";
+import TestResults from "~/components/js-test/TestResults.vue";
 import Explanation from "~/components/js-test/Explanation.vue";
 import { mapState } from "vuex";
 import tests from "../tests.json";

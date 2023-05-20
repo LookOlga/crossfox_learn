@@ -11,6 +11,7 @@
       <InstagramIcon />
       <DonutIcon />
       <YoomoneyIcon />
+      <SoonRuIcon/>
     </svg>
   </div>
 </template>
@@ -26,6 +27,7 @@ import MagnifierIcon from './buttons/MagnifierIcon';
 import InstagramIcon from './soc/InstagramIcon';
 import DonutIcon from './other/DonutIcon';
 import YoomoneyIcon from './donation/YoomoneyIcon';
+import SoonRuIcon from './other/SoonRuIcon.vue';
 export default {
   components: {
     JavaScriptIcon,
@@ -37,7 +39,8 @@ export default {
     MagnifierIcon,
     InstagramIcon,
     DonutIcon,
-    YoomoneyIcon
+    YoomoneyIcon,
+    SoonRuIcon
   }
 }
 

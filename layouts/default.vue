@@ -2,8 +2,8 @@
   <v-app :class="{ 'paddingLeft': isDesktop }">
     <v-card>
       <v-layout>
-        <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" fixed :temporary="temporary"
-          :hide-overlay="overlay" color="#000" style="min-height: 100vh">
+        <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" fixed :hide-overlay="overlay" color="#000"
+          style="min-height: 100vh" width="290">
           <v-list>
             <v-list-item class="d-flex justify-space-between align-center pl-2 pr-2">
               <v-list-item-action>
@@ -19,7 +19,7 @@
               </v-list-item-content>
             </v-list-item>
             <v-list-item v-for="(item, i) in items" :key="i" link :to="item.to" router exact color="deep-purple lighten-5"
-              class="pl-2 pr-2">
+              class="pl-2 pr-2" :class="{'soon': item.soon}">
               <v-list-item-action style="min-width: 36px" class="justify-center">
                 <Icon :id="item.id" class="menu-icon" />
               </v-list-item-action>
@@ -34,12 +34,6 @@
     <v-app-bar :clipped-left="clipped" fixed flat color="#121212" :class="{ 'paddingLeft': isDesktop }">
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="white" /> -->
       <v-app-bar-nav-icon color="white" v-if="!isDesktop" @click.stop="drawer = true" />
-      <!-- <v-btn
-        icon
-        @click.stop="rail = !rail"
-      >
-        <v-icon color="white">mdi-{{ `chevron-${rail ? 'right' : 'left'}` }}</v-icon>
-      </v-btn> -->
       <nuxt-link to="/" class="logo">
         <h1 class="logo__title">CrossFox</h1>
       </nuxt-link>
@@ -47,31 +41,11 @@
       <a href="https://instagram.com/crossfox_learn" class="instagram-link">
         <Icon id="instagram-icon" class="instagram-icon icon" width="20" height="20" />
       </a>
-      <!-- <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn> -->
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container fluid>
         <Nuxt />
-        <div class="donat">
+        <div class="donat isDesktop">
           <NuxtLink to="/donation" class="donat__link">
             <img src="../static/home_page/donat.jpg" alt="donat" class="donat__img" />
             <div class="donat__label">Поддержи проект!</div>
@@ -79,28 +53,11 @@
         </div>
       </v-container>
     </v-main>
-    <!-- <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer> -->
 
     <v-footer class="d-flex justify-space-between" flat color="#121212" :clipped-left="clipped">
-        <span>&copy; {{ new Date().getFullYear() }}</span>
-        <a href="https://www.freepik.com/free-vector/doughnut-planet-flat-cartoon-style_12312308.htm#query=donut&position=13&from_view=keyword"
-          class="license-link" target="_blank">Image by catalyststuff</a>
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <a href="https://www.freepik.com/free-vector/doughnut-planet-flat-cartoon-style_12312308.htm#query=donut&position=13&from_view=keyword"
+        class="license-link isDesktop" target="_blank">Image by catalyststuff</a>
     </v-footer>
     <SvgIcons />
   </v-app>
@@ -131,12 +88,18 @@ export default {
         {
           id: "javascript-icon",
           title: "JavaScript вопросы",
-          to: "/js-questions",
+          to: "",
+          soon: true
         },
         {
           id: "book-icon",
           title: "Книги",
           to: "/books",
+        },
+        {
+          id: "donut-icon",
+          title: "Поддержать проект",
+          to: "/donation",
         },
       ],
       mini: true,
@@ -153,17 +116,19 @@ export default {
   },
   watch: {
     isDesktop(val) {
-      console.log(val)
       if (val) {
+        console.log(val)
         this.mini = true;
+        this.drawer = true;
       } else {
         this.mini = false;
+        this.drawer = false;
       }
-    }
+    },
   },
   mounted() {
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 600) {
+      if (window.innerWidth > 1024) {
         this.isDesktop = true;
       } else {
         this.isDesktop = false;
@@ -176,9 +141,10 @@ export default {
 <style lang="scss">
 html {
   font-size: 10px;
+  -webkit-tap-highlight-color: transparent;
 
   @media (max-width: 768px) {
-    font-size: 1vw;
+    font-size: 1.3vw;
   }
 
   @media (max-width: 480px) {
@@ -209,6 +175,24 @@ ul {
   padding-left: 0 !important;
 }
 
+.isDesktop {
+  display: block;
+}
+
+.isMobile {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .isDesktop {
+    display: none;
+  }
+
+  .isMobile {
+    display: block;
+  }
+}
+
 .logo {
   &__title {
     font-family: "Montserrat", sans-serif;
@@ -228,13 +212,14 @@ ul {
   font-weight: 400;
 }
 
-// .container {
-//   padding: 0 30px;
-//   height: 100%;
-//   @media (min-width: 1904px) {
-//     max-width: 1400px;
-//   }
-// }
+.container {
+  padding: 0 20px !important;
+  max-width: 1240px !important;
+
+  @media (min-width: 1904px) {
+    max-width: 1300px;
+  }
+}
 
 // .v-main {
 //    background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
@@ -325,11 +310,29 @@ ul {
 }
 
 .license-link {
-  font-size: 10px;
+  font-size: 8px;
   color: #fff !important;
 }
 
 .paddingLeft {
-  padding-left: 56px;
+  padding-left: 5.6rem;
+}
+
+.soon {
+  .v-list-item__content {
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    width: 6.5rem;
+    height: 3rem;
+    background: url('../static/icons/soon_ru.svg') center center/contain no-repeat;
+    transform: translateY(-50%);
+    z-index: 5;
+  }
+ }
 }
 </style>
