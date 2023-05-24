@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div v-if="isLoading">Loading...</div>
-
+    <div class="page-loader" v-if="isLoading">
+      <Loader />
+    </div>
     <div class="test-page page" v-else>
       <h2 class="test-page__title page__title">
         Тест на знание JavaScript
       </h2>
-
       <div class="test-page__content">
         <div class="test-page__count d-flex align-center mb-3">
           <h3 class="test-page__subtitle mr-3">Вопросы:</h3>
@@ -255,20 +255,7 @@ export default {
     },
     closeExplanation() {
       this.explanationIsVisible = false;
-    },
-    // async getQuestions() {
-    //  try {
-    //   this.isLoading = true;
-    //   const data = await this.$axios.$get('/test/new');
-
-    //   this.questions = data;
-
-    //   console.log(this.questions)
-    //   this.isLoading = false;
-    //  } catch (error) {
-    //    console.log(error)
-    //  }
-    // }
+    }
   },
 };
 </script>

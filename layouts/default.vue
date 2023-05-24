@@ -426,4 +426,11 @@ ul {
         }
     }
 }
+
+.page-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30rem;
+}
 </style>

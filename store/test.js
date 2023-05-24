@@ -59,7 +59,6 @@ const actions = {
             commit(mutationTypes.startNewTestStart);
             this.$axios.$get('/test/new')
             .then((data) => {
-                console.log(data);
                 commit(mutationTypes.startNewTestSuccess, data);
                 resolve();
             })
