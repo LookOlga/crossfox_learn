@@ -4,9 +4,7 @@
       <Loader />
     </div>
     <div class="test-page page" v-else>
-      <h2 class="test-page__title page__title">
-        Тест на знание JavaScript
-      </h2>
+      <h2 class="test-page__title page__title">Тест на знание JavaScript</h2>
       <div class="test-page__content">
         <div class="test-page__count d-flex align-center mb-3">
           <h3 class="test-page__subtitle mr-3">Вопросы:</h3>
@@ -186,10 +184,10 @@ export default {
         }
       }
 
-      if(!this.disabledNext && key === "ArrowRight") {
-          this.nextQuestion();
-      } 
-    
+      if (!this.disabledNext && key === "ArrowRight") {
+        this.nextQuestion();
+      }
+
       // if (key === "Tab") {
       //   let index = 0;
       //   this.onChooseAnswer(index);
@@ -201,11 +199,11 @@ export default {
       console.log(this.userAnswer);
     },
     onChooseAnswer(ind) {
-        this.ansIndex = ind;
+      this.ansIndex = ind;
 
-        if (this.userAnswer) {
-          this.disabled = false;
-        }
+      if (this.userAnswer) {
+        this.disabled = false;
+      }
     },
     nextQuestion() {
       if (this.isLastQuest) {
@@ -255,14 +253,14 @@ export default {
     },
     closeExplanation() {
       this.explanationIsVisible = false;
-    }
+    },
   },
 };
 </script>
 
 <style lang="scss">
 .test-page {
-  max-width: 800px;
+  max-width: 80rem;
   margin: 0 auto;
   &__content {
     display: flex;
@@ -306,20 +304,20 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        max-width: 110px;
+        max-width: 11rem;
         background-color: #fafafa;
         color: #333;
         text-transform: lowercase;
-        font-size: 12px;
-        padding: 5px;
-        border-radius: 10px;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        border-radius: 1rem;
         white-space: break-spaces;
         letter-spacing: 1px;
         transform: translate(25%, -25%);
       }
     }
 
-    @media(max-width: 480px) {
+    @media (max-width: 480px) {
       top: -6rem;
     }
   }
@@ -334,9 +332,9 @@ export default {
     align-items: center;
     width: 100%;
     background-color: #333;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     text-align: center;
-    margin-bottom: 12px;
+    margin-bottom: 1.2rem;
     cursor: pointer;
     input {
       opacity: 0;

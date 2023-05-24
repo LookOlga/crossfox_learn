@@ -143,12 +143,16 @@ html {
   font-size: 10px;
   -webkit-tap-highlight-color: transparent;
   
-@media (max-width: 768px) {
-    font-size: 1.3vw;
-  }
+  @media (max-width: 768px) {
+      font-size: 1.3vw;
+    }
 
   @media (max-width: 480px) {
     font-size: 2.5vw;
+  }
+
+  @media (min-width: 1921px) {
+    font-size: 0.42vw;
   }
 }
 
@@ -217,7 +221,7 @@ ul {
   max-width: 120rem !important;
 
   @media (min-width: 1904px) {
-    max-width: 1300px;
+    max-width: 130rem;
   }
 }
 
@@ -266,8 +270,12 @@ ul {
     font-weight: 500;
     line-height: 2;
     color: #fff !important;
-    padding-bottom: 5px;
-    border-bottom: 1px dashed #fff;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem dashed #fff;
+  }
+
+  @media (min-width: 1921px) {
+    padding: 5rem 0;
   }
 }
 
@@ -297,7 +305,7 @@ ul {
   }
 
   &__img {
-    border-radius: 5px;
+    border-radius: 0.5rem;
     transition: box-shadow 0.2s;
   }
 
@@ -310,7 +318,7 @@ ul {
 }
 
 .license-link {
-  font-size: 8px;
+  font-size: 0.8rem;
   color: #fff !important;
 }
 
@@ -336,16 +344,6 @@ ul {
  }
 }
 
-
-.container {
-    padding: 0 16px;
-    height: 100%;
-    @media (min-width: 1904px) {
-      max-width: 1400px;
-    }
-  }
-
-
 .v-application {
     font-family: $body-font-family, sans-serif !important;
     line-height: 1.6;
@@ -362,10 +360,10 @@ ul {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    min-width: 200px;
-    padding: 12px 15px;
-    border-radius: 5px;
-    font-size: 16px;
+    min-width: 20rem;
+    padding: 1.2rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
    
 }
 

@@ -12,7 +12,12 @@
       >
     </div>
     <div class="main-screen__img">
-      <img src="../static/home_page/full_illustr.png" alt="crossfox" width="470" height="470"/>
+      <img
+        src="../static/home_page/full_illustr.png"
+        alt="crossfox"
+        width="470"
+        height="470"
+      />
     </div>
   </div>
 </template>
@@ -71,7 +76,8 @@ export default {
   from {
     opacity: 0;
     transform: scale(0);
-  } to {
+  }
+  to {
     opacity: 1;
     transform: scale(1);
   }

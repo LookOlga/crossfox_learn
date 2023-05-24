@@ -28,11 +28,11 @@
 </template>
 
 <style>
-    .spinner {
-        width: 6rem;
-        height: 6rem;
-        margin: auto;
-        display: block;
-        shape-rendering: auto;
-    }
+.spinner {
+  width: 6rem;
+  height: 6rem;
+  margin: auto;
+  display: block;
+  shape-rendering: auto;
+}
 </style>

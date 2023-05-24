@@ -1,8 +1,6 @@
 <template>
   <div class="page questions-page">
-    <h2 class="page__title">
-      Вопросы и ответы к собеседованию по JavaScript
-    </h2>
+    <h2 class="page__title">Вопросы и ответы к собеседованию по JavaScript</h2>
     <v-expansion-panels>
       <v-expansion-panel v-for="(item, i) in items" :key="i">
         <v-expansion-panel-header class="questions-page__quest-title pa-6">
@@ -17,31 +15,32 @@
             :code="item.code"
           />
           <div v-if="item.images" class="questions-page__images">
-            <div class="questions-page__img-wrapper"
-                v-for="(img, i) in item.images"
-                :key="'img' + i">
-              <img
-                :src="img"
-                alt=""
-                @click="openLightbox(item.images, i)"
+            <div
+              class="questions-page__img-wrapper"
+              v-for="(img, i) in item.images"
+              :key="'img' + i"
+            >
+              <img :src="img" alt="" @click="openLightbox(item.images, i)" />
+              <Icon
+                id="magnifier-icon"
+                class="questions-page__img-zoom zoom-icon"
               />
-              <Icon id="magnifier-icon" class="questions-page__img-zoom zoom-icon"/>
             </div>
           </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-    <Lightbox :class="{ 'lightbox-is-opened': lightboxIsOpened }"/>
+    <Lightbox :class="{ 'lightbox-is-opened': lightboxIsOpened }" />
   </div>
 </template>
 
 <script>
-import questions from '../questions.json';
-import Lightbox from '~/components/Lightbox';
-import Icon from '~/components/Icons/Icon';
+// import questions from "../questions.json";
+import Lightbox from "~/components/Lightbox";
+import Icon from "~/components/Icons/Icon";
 export default {
   name: "JsQuestions",
-  components: {Lightbox, Icon},
+  components: { Lightbox, Icon },
   data() {
     return {
       items: questions,
@@ -49,22 +48,20 @@ export default {
   },
   methods: {
     openLightbox(images, ind) {
-      this.$store.commit('openLightbox', images);
+      this.$store.commit("openLightbox", images);
       this.setCurrentImageIndex(ind);
     },
     setCurrentImageIndex(ind) {
-      this.$store.commit('setCurrentImageIndex', ind);
-    }
+      this.$store.commit("setCurrentImageIndex", ind);
+    },
   },
   computed: {
     lightboxIsOpened() {
       return this.$store.state.lightboxIsOpened;
-    }
-  }
+    },
+  },
 };
 </script>
-
-  
 
 <style lang="scss">
 .questions-page {
@@ -102,7 +99,7 @@ export default {
     margin: 1rem;
     cursor: pointer;
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -116,9 +113,10 @@ export default {
     }
 
     &:hover {
-      &::before, .questions-page__img-zoom {
+      &::before,
+      .questions-page__img-zoom {
         opacity: 1;
-    }
+      }
     }
 
     img {
@@ -127,43 +125,49 @@ export default {
     }
   }
 
- 
-
   &__answer {
     p {
       margin: 1.5rem 0 !important;
     }
+
     span {
       font-weight: 700;
     }
+
     h3,
     li {
       margin-bottom: 2rem;
     }
+
     h4 {
       margin-bottom: 1rem;
     }
+
     h3 {
       margin-top: 2rem;
     }
+
     h3,
     h4,
     b {
       color: #cba67a;
     }
+
     // em {
     //   padding: 0 6px;
     // }
+
     div {
-      border-radius: 4px;
-      border: 2px solid #cba67a;
+      border-radius: 0.5rem;
+      border: 0.2rem solid #cba67a;
       padding: 2rem;
       background-color: #424242;
       font-weight: 400;
     }
+
     code {
       display: block;
-      margin: 5px 0;
+      margin: 0.5rem 0;
     }
   }
 }
